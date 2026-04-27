@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(251, 191, 36, 0.18), transparent 28%),
+    radial-gradient(circle at top right, rgba(14, 165, 233, 0.12), transparent 24%),
+    linear-gradient(180deg, #fffdf7 0%, #f8fafc 42%, #eef2ff 100%);
+}
+
+.dark body {
+  color-scheme: dark;
+  background:
+    radial-gradient(circle at top left, rgba(251, 191, 36, 0.12), transparent 24%),
+    radial-gradient(circle at top right, rgba(56, 189, 248, 0.1), transparent 20%),
+    linear-gradient(180deg, #020617 0%, #0f172a 45%, #111827 100%);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.dark .react-calendar-heatmap text {
+  fill: #94a3b8;
+}
+
+@theme {
+  --color-gold-400: #fbbf24;
+  --color-gold-500: #f59e0b;
+  --color-gold-600: #d97706;
+}
