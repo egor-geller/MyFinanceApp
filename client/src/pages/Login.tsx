@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import api from '../api/client';
 import { useAuth } from '../context/AuthContext';
 import { User } from '../types';
+import { changeLanguage } from '../i18n';
 
 function JarIcon() {
   return (
@@ -64,12 +65,14 @@ function AlertIcon() {
 export default function Login() {
   const { login } = useAuth();
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+
+  const isHebrew = i18n.language === 'he';
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -90,6 +93,17 @@ export default function Login() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-amber-50 via-white to-orange-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-800 px-4">
       <div className="w-full max-w-sm">
+        <div className="flex justify-end mb-3">
+          <button
+            type="button"
+            onClick={() => changeLanguage(isHebrew ? 'en' : 'he')}
+            className="text-xs font-semibold px-3 py-1.5 rounded-full border border-slate-300 dark:border-slate-600 text-slate-600 dark:text-slate-300 hover:border-amber-400 hover:text-amber-500 transition-colors"
+            aria-label={isHebrew ? 'Switch to English' : 'עבור לעברית'}
+          >
+            {isHebrew ? 'EN' : 'עב'}
+          </button>
+        </div>
+
         <div className="flex flex-col items-center mb-8">
           <div className="bg-amber-100 dark:bg-amber-900/30 rounded-2xl p-4 mb-3 shadow-sm ring-1 ring-amber-200 dark:ring-amber-800/50">
             <JarIcon />
