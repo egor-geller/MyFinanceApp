@@ -4,6 +4,20 @@ import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import { usePrivacy } from '../context/PrivacyContext';
 
+function JarIcon() {
+  return (
+    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-8 h-8">
+      <rect x="20" y="9" width="24" height="6" rx="3" fill="#d97706"/>
+      <rect x="22" y="15" width="20" height="4" rx="1" fill="#f59e0b"/>
+      <path d="M14 19h36v26a7 7 0 01-7 7H21a7 7 0 01-7-7V19z" fill="#fffbeb" stroke="#f59e0b" strokeWidth="2"/>
+      <ellipse cx="26" cy="37" rx="6" ry="5" fill="#fbbf24" opacity="0.9"/>
+      <ellipse cx="36" cy="33" rx="6" ry="5" fill="#f59e0b" opacity="0.9"/>
+      <ellipse cx="31" cy="43" rx="6" ry="5" fill="#d97706" opacity="0.9"/>
+      <path d="M14 19h36v5H14z" fill="#f59e0b" opacity="0.15"/>
+    </svg>
+  );
+}
+
 export default function Navbar() {
   const { user, logout } = useAuth();
   const { dark, toggle } = useTheme();
@@ -14,9 +28,9 @@ export default function Navbar() {
     <nav className="sticky top-0 z-40 border-b border-white/60 bg-white/75 px-4 py-3 backdrop-blur-xl dark:border-slate-800/80 dark:bg-slate-950/70 sm:px-6">
       <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3">
         <Link to="/" className="flex items-center gap-3">
-          <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400 via-orange-400 to-sky-500 text-sm font-black text-white shadow-lg shadow-amber-500/20">
-            FA
-          </span>
+          <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-amber-100 dark:bg-amber-900/40 shadow-sm ring-1 ring-amber-200 dark:ring-amber-800/50">
+            <JarIcon />
+          </div>
           <div className="leading-tight">
             <div className="text-base font-bold tracking-tight text-slate-900 dark:text-white">FinanceApp</div>
             <div className="text-xs text-slate-500 dark:text-slate-400">{t('nav.tagline')}</div>
