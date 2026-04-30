@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { useCurrencyLabel } from '../i18n';
 import api from '../api/client';
@@ -43,7 +44,7 @@ export default function Archive() {
         <div className="space-y-3">
           {goals.map((g) => (
             <div key={g.id} className="bg-white dark:bg-slate-800 rounded-xl shadow p-4 flex items-center justify-between">
-              <div>
+              <Link to={`/goals/${g.id}`} className="flex-1 min-w-0 hover:opacity-75 transition-opacity">
                 <p className="font-semibold">{g.name}</p>
                 <p className="text-sm text-slate-400">
                   <PrivacyAmount>{g.target_amount} {currencyLabel(g.currency)}</PrivacyAmount>
@@ -52,7 +53,7 @@ export default function Archive() {
                 <p className="text-xs text-slate-300 dark:text-slate-500">
                   {t('archive.archived')} {new Date(g.deleted_at).toLocaleDateString()}
                 </p>
-              </div>
+              </Link>
               <button onClick={() => restore(g.id)}
                 className="px-3 py-1.5 text-sm bg-amber-100 dark:bg-amber-900 text-amber-700 dark:text-amber-200 hover:bg-amber-200 dark:hover:bg-amber-800 rounded-lg transition-colors font-semibold">
                 {t('common.restore')}
